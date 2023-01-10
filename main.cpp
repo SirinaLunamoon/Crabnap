@@ -1,28 +1,49 @@
-#include <SFML/Graphics.hpp>
 #include <cmath>
+#include "Background.hpp"
+#include "Player.hpp"
+#include "Enemy.hpp"
 
 int main()
 {
-    sf::RenderWindow okno(sf::VideoMode(320, 240), "Kurs SFML 2.0 - http://cpp0x.pl");
-    sf::Clock stoper;
-    while (okno.isOpen())
+    const int SCREEN_WIDTH = 1920;
+    const int SCREEN_HEIGHT = 1080;
+    std::string title = "Crabnap";
+
+    sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), title);
+    sf::Clock gameClock;
+    float dt{0.0f};
+
+    Background bg;
+    Player player;
+    Enemy enemy;
+
+    player.loadImg("Player.png");
+    player.setup();
+
+    enemy.loadImg("Enemy.png");
+    enemy.setup();
+
+    while (window.isOpen())
     {
         sf::Event event;
-        while (okno.pollEvent(event))
+        while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-                okno.close();
+                window.close();
 
         } //while
-        okno.clear();
+        window.clear();
 
-        sf::CircleShape ksztalt(std::sin(stoper.getElapsedTime().asSeconds()) * okno.getSize().y / 8 + okno.getSize().y / 4);
-        ksztalt.setOrigin(sf::Vector2f(ksztalt.getRadius(), ksztalt.getRadius()));
-        ksztalt.setPosition(okno.getSize().x / 2.0f, okno.getSize().y / 2.0f);
-        ksztalt.setFillColor(sf::Color::Yellow);
-        okno.draw(ksztalt);
+        dt = gameClock.getElapsedTime().asSeconds();
+        player.move(dt);
+        enemy.move();
+        dt = gameClock.restart().asSeconds();
 
-        okno.display();
+        bg.draw(window);
+        player.draw(window);
+        enemy.draw(window);
+
+        window.display();
     } //while
     return 0;
 }
