@@ -47,10 +47,11 @@ void Player::updateAnimation(float& dt)
 		m_frameSize.x = 0;
 	}
 
-	sprite.setTextureRect(sf::IntRect(m_frameSize.x * 21, m_frameSize.y * 32, 21, 32));
-}
+	dt = m_animClock.getElapsedTime().asSeconds();
 
-//void Player::draw(sf::RenderWindow& win)
-//{
-//	win.draw(sprite);
-//}
+	if (dt > 0.6f)
+	{
+		sprite.setTextureRect(sf::IntRect(m_frameSize.x * 21, m_frameSize.y * 32, 21, 32));
+		dt = m_animClock.restart().asSeconds();
+	}
+}

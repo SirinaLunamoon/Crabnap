@@ -1,26 +1,23 @@
 #pragma once
 #include "Entity.hpp"
 
-class Player : public Entity
+class Crab : public Entity
 {
 public:
-	Player();
+	Crab();
 
-	enum Direction
+	enum Movement
 	{
-		UP,
-		RIGHT,
-		DOWN,
-		LEFT
+		IDLE
 	};
 
 	void setup();
-	void move(float &dt);
+	void move(float& dt);
 
 private:
 	void updateAnimation(float& dt);
 
 private:
-	sf::Vector2i m_frameSize;
+	sf::Vector2i m_frameCount;
 	sf::Clock m_animClock;
 };

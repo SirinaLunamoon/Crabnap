@@ -2,6 +2,7 @@
 #include "Background.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
+#include "Crab.hpp"
 
 int main()
 {
@@ -16,12 +17,16 @@ int main()
     Background bg;
     Player player;
     Enemy enemy;
+    Crab crab;
 
     player.loadImg("Player.png");
     player.setup();
 
     enemy.loadImg("Enemy.png");
     enemy.setup();
+
+    crab.loadImg("CrabIdle.png");
+    crab.setup();
 
     while (window.isOpen())
     {
@@ -36,12 +41,14 @@ int main()
 
         dt = gameClock.getElapsedTime().asSeconds();
         player.move(dt);
-        enemy.move();
+        enemy.move(dt);
+        crab.move(dt);
         dt = gameClock.restart().asSeconds();
 
         bg.draw(window);
         player.draw(window);
         enemy.draw(window);
+        crab.draw(window);
 
         window.display();
     } //while

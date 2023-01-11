@@ -7,6 +7,8 @@ public:
 	void loadImg(std::string fileName);
 	void draw(sf::RenderWindow &win);
 
+	void setPosition(sf::Vector2f position) {}
+
 protected:
 	sf::Texture texture;
 	sf::Sprite sprite;
