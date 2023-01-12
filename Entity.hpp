@@ -1,17 +1,13 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#include "Graphics.hpp"
 
-class Entity
+class Entity : public Graphics
 {
 public:
-	void loadImg(std::string fileName);
-	void draw(sf::RenderWindow &win);
-
-	void setPosition(sf::Vector2f position) {}
+	void setPosition(sf::Vector2f position) { sprite.setPosition(position); }
+	sf::Vector2f getPosition() const { return sprite.getPosition(); }
 
 protected:
-	sf::Texture texture;
-	sf::Sprite sprite;
 	sf::Vector2f position;
 	float speed;
 };

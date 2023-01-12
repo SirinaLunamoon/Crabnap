@@ -6,7 +6,6 @@ Crab::Crab() : m_frameCount(1, IDLE)
 void Crab::setup()
 {
 	sprite.setTextureRect(sf::IntRect(0, 0, 78, 72));
-	sprite.setPosition(sf::Vector2f(850.0f, 1000.0f));
 }
 
 void Crab::move(float& dt)

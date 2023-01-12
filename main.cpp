@@ -19,14 +19,17 @@ int main()
     Enemy enemy;
     Crab crab;
 
-    player.loadImg("Player.png");
+    player.load("Player.png");
     player.setup();
+    player.setupText();
+    player.setPosition(sf::Vector2f(1860.0f, 1000.0f));
 
-    enemy.loadImg("Enemy.png");
-    enemy.setup();
+    enemy.load("Enemy.png");
+    enemy.setPosition(sf::Vector2f(450.0f, 1000.0f));
 
-    crab.loadImg("CrabIdle.png");
+    crab.load("CrabIdle.png");
     crab.setup();
+    crab.setPosition(sf::Vector2f(850.0f, 1000.0f));
 
     while (window.isOpen())
     {
@@ -47,6 +50,7 @@ int main()
 
         bg.draw(window);
         player.draw(window);
+        player.drawText(window);
         enemy.draw(window);
         crab.draw(window);
 
